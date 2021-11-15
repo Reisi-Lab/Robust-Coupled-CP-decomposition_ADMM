@@ -7,10 +7,10 @@ addpath('D:\Matlab_Toolbox\tensorlab_2016-03-28');
 %Main function processes EEG signal first and then split EEG signal into target trials 
 % and standard trials for classification. We use 16 subjects 3 runs of auditory task data
 % to construct 3-order EEG tensors where the modes represent: subject * channel * time. 
-% 
+%  
 % A version of re-referenced EEG data with 37 channels sampled at 1000HZ are used. 
-% Pre-processing steps include removing channels 35,36,37(ECG, EOG), down-sample(to 200HZ),
-% (band-pass filter may be not needed) and so on. EEG tensor size is: 16 * 34 * 121. For each run, 20 samples 
+% Pre-processing steps include removing channels 35,36,37, down-sample(to 200HZ),
+% (band-pass filter may be used) and so on. EEG tensor size is: 16 * 34 * 121. For each run, 20 samples 
 % are saved. Finally, 60 target and 60 standard trials are saved for classification step. 
 %
 % References: 
@@ -52,9 +52,6 @@ for sub = subjects
         data_reref = EEG_reref.data_reref;    % 37*340000
         % down-sample and band-pass filter
         resamped_data = ft_preproc_resample(data_reref,original_freq,down_freq,'resample'); % data: Nchans*Nsamples 37*68000 
-%         highpass_data = ft_preproc_highpassfilter(resamped_data, 1000,45);
-%         lowpass_data = ft_preproc_lowpassfilter(highpass_data,1000,1);
-%         EEG_3runs{n_runs} = lowpass_data;     % 37*68000
         EEG_3runs{n_runs} = resamped_data;
 
         % read target onset and standard onset data for each run

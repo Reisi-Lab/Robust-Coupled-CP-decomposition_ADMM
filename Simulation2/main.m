@@ -4,9 +4,10 @@ addpath('D:\Matlab_Toolbox\tensor_toolbox');
 addpath('D:\Matlab_Toolbox\tensorlab_2016-03-28');
 addpath('D:\Matlab_Toolbox\CMTF_Toolbox_v1_1');
 addpath('D:\Matlab_Toolbox\CMTF_Toolbox_v1_1\poblano_toolbox-main');
-%% This is the main function: return the TRSs of the proposed method and compared methods
+%% Main function: return the TRSs of the proposed method and compared methods
 %  The compared method are CTTF (implenmented via setting updates of S as zeros) and 
 %  CPD (decompose two tensors seperately)  
+
 %% Coupled size and parameters setting
 global RCCPD_TRS_X 
 global RCCPD_TRS_Y

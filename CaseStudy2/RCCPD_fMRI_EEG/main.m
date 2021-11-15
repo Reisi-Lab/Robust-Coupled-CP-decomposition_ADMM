@@ -2,7 +2,8 @@ clear; close all; clc
 
 addpath('D:\Matlab_Toolbox\tensor_toolbox');
 addpath('D:\Matlab_Toolbox\tensorlab_2016-03-28');
-%Main function extract EEG and fMRI features (lambda) as input of classification
+%Main function extract EEG and fMRI features (lambda) as input of
+%classification and returns the result of accuracy.
 
 % Read EEG (tensor) and fMRI (matrix) data  
 EEG_target = load('EEG_target_trials.mat');

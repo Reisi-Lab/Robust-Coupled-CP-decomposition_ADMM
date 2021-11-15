@@ -6,6 +6,9 @@ addpath('D:\Matlab_Toolbox\CMTF_Toolbox_v1_1');
 addpath('D:\Matlab_Toolbox\CMTF_Toolbox_v1_1\poblano_toolbox-main');
 
 %% Main function: return TRSs of the proposed method and compared methods
+% By running main function, average TRSs with their standard deviation for 
+% three methods (RCCPD, CP,CMTF) are obtained.
+
 coupled_size = [10 10 10 20];     % coupled tensor and matrix size
 outlier_ratio = 0.05;             % set the outlier ratio as 5%, 10%, 20% respectively
 r = 4;                            % tensor rank

@@ -1,6 +1,6 @@
 function [A,V,F,S1,M,S2,D1,D2,lambda1,lambda2] = admm(X,Y,opts)
 %Solve a robust coupled tensor CP decomposition problem via ADMM
-%   [A,V,F,S1,M,S2,D1,D2,lambda1,lambda2] = ADMM(X,Y,opts)
+%   [A,V,F,S1,M,S2,D1,D2,lambda1,lambda2] = admm(X,Y,opts)
 %   Input:
 %       X        -    I1*I2*...*IN  tensor  
 %       Y        -    I1*J2*...*JM  tensor    
@@ -66,7 +66,7 @@ for iter = 1:max_iter
     % Update A and V
     H1 = 1;
     for idx = 2:mY
-        H1 = H1.*(V{idx}'*V{idx});          % calculate similarsign A(-1)
+        H1 = H1.*(V{idx}'*V{idx});          
     end
     
     for i = 1:nX

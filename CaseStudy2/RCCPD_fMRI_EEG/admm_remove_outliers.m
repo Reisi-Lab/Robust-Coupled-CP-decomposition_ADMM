@@ -1,6 +1,6 @@
 function [A,V,F,S1,M,S2,D1,D2,lambda1,lambda2] = admm_remove_outliers(X,Y,opts)
 %Solve a robust coupled tensor CP decomposition problem via ADMM
-%   [A,V,F,S1,M,S2,D1,D2,lambda1,lambda2] = ADMM(X,Y,opts)
+%   [A,V,F,S1,M,S2,D1,D2,lambda1,lambda2] = admm_remove_outliers(X,Y,opts)
 %   Input:
 %       X        -    I1*I2*...*IN  tensor  
 %       Y        -    I1*J2*...*JM  tensor    
@@ -66,7 +66,7 @@ for iter = 1:max_iter
     % Update A and V
     H1 = 1;
     for idx = 2:mY
-        H1 = H1.*(V{idx}'*V{idx});          % calculate similarsign A(-1)
+        H1 = H1.*(V{idx}'*V{idx});          
     end
     
     for i = 1:nX
@@ -131,12 +131,12 @@ for iter = 1:max_iter
     F = soft_thresholding(alpha/pho,S1 - D1/pho);
     % Update S1
     L1 = cpdgen(A);
-    S1 = zeros(dimX);
+    S1 = zeros(dimX); % update of S1 is set to 0
     % Update M
     M = soft_thresholding(beta/pho,S2 - D2/pho);
     % Update S2
     L2 = cpdgen(V);
-    S2 = zeros(dimY);
+    S2 = zeros(dimY); % update of S2 is set to 0
     % Update D1
     D1 = D1 + pho*(F - S1); 
     % Update D2

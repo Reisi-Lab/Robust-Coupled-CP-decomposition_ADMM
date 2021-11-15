@@ -80,9 +80,9 @@ for iter = 1:max_iter
                 W{i} = W{i}.*(A{j}'*A{j});  
             end
         end 
-        t1 = W{1} + H1;                      % calculate similar sign T(-1) + A(-1)
+        t1 = W{1} + H1;                                % calculate sign T(-1) + A(-1)
         Khat_A_N = khatrirao(A{[nX:-1:i+1,i-1:-1:1]}); % calculate (odot A(-n))
-        Khat_V_M = khatrirao(V{[mY:-1:2]});  % calculate (odot V(-1))
+        Khat_V_M = khatrirao(V{[mY:-1:2]});            % calculate (odot V(-1))
         if i == 1 
             A{i} = ((tens2mat(X,i) - tens2mat(S1,i))*Khat_A_N + (tens2mat(Y,i) - tens2mat(S2,i))*Khat_V_M)*(t1'/(t1*t1'));
         else    

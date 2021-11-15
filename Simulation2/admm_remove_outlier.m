@@ -1,6 +1,6 @@
 function [A,V,F,S1,M,S2,D1,D2,history] = admm_remove_outlier(X,Y,opts)
-%Solve a robust coupled tensor CP decomposition problem via ADMM
-%   [A,V,F,S1,M,S2,D1,D2,history] = admm(X,Y,opts)
+%Solve a coupled tensor CP decomposition problem via ADMM
+%   [A,V,F,S1,M,S2,D1,D2,history] = admm_remove_outlier(X,Y,opts)
 %   Input:
 %       X        -    I1*I2*...*IN  tensor  
 %       Y        -    I1*J2*...*JM  tensor    
@@ -80,9 +80,9 @@ for iter = 1:max_iter
                 W{i} = W{i}.*(A{j}'*A{j});  
             end
         end 
-        t1 = W{1} + H1;                      % calculate similar sign T(-1) + A(-1)
+        t1 = W{1} + H1;                                % calculate sign T(-1) + A(-1)
         Khat_A_N = khatrirao(A{[nX:-1:i+1,i-1:-1:1]}); % calculate (odot A(-n))
-        Khat_V_M = khatrirao(V{[mY:-1:2]});  % calculate (odot V(-1))
+        Khat_V_M = khatrirao(V{[mY:-1:2]});            % calculate (odot V(-1))
         if i == 1 
             A{i} = ((tens2mat(X,i) - tens2mat(S1,i))*Khat_A_N + (tens2mat(Y,i) - tens2mat(S2,i))*Khat_V_M)*(t1'/(t1*t1'));
         else    
@@ -115,12 +115,12 @@ for iter = 1:max_iter
     F = soft_thresholding(alpha/pho,S1 - D1/pho);
     % Update S1
     L1 = cpdgen(A);
-    S1 = zeros(dimX);
+    S1 = zeros(dimX); % update of S1 is set to 0
     % Update M
     M = soft_thresholding(beta/pho,S2 - D2/pho);
     % Update S2
     L2 = cpdgen(V);
-    S2 = zeros(dimY);
+    S2 = zeros(dimY); % update of S1 is set to 0
     % Update D1
     D1 = D1 + pho*(F - S1); 
     % Update D2
